@@ -29,7 +29,7 @@ class Breakthrough():
         self.__SetupGame()
         self.save_to_game_2()
 
-    def save_to_game_2(self):
+    def save_to_game_2(self):#
         with open("game2.txt", "w") as saved_game:
             saved_game.write(f"{str(self.__Score)}\n")
             saved_game.write(f"{self.__CurrentLock.save_lock_string()}\n")
@@ -84,10 +84,11 @@ class Breakthrough():
         else:
             return False
 
-    def __SetupGame(self):
+    def __SetupGame(self):#
         Choice = input("Enter L to load a game from a file, anything else to play a new game:> ").upper()
         if Choice == "L":
-            if not self.__LoadGame("game1.txt"):
+            file_name = input("enter the name of the file you would like to load")
+            if not self.__LoadGame(file_name):
                 self.__GameOver = True
         else:
             self.__CreateStandardDeck()
@@ -151,6 +152,7 @@ class Breakthrough():
                 self.__CurrentLock.SetChallengeMet(Count, True)
 
     def __LoadGame(self, FileName):
+
         try:
             with open(FileName) as f:
                 LineFromFile = f.readline().rstrip()
